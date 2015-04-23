@@ -1,3 +1,14 @@
+###
+
+    _____                   ____      ___
+   / ___/__ ___ _  ___ ____/ __ \____/ _ \___ ___ _  ___ _
+  / (_ / _ `/  ' \/ -_)___/ /_/ /___/ , _/ _ `/  ' \/ _ `/
+  \___/\_,_/_/_/_/\__/    \____/   /_/|_|\_,_/_/_/_/\_,_/
+
+
+###
+
+
 loopback = require("loopback")
 boot = require("loopback-boot")
 app = module.exports = loopback()
@@ -42,9 +53,31 @@ app.use loopback.compress()
 # -- Add your pre-processing middleware here --
 
 # Setup the view engine (jade)
+liquid = require('liquid.coffee')
 path = require("path")
-app.set "views", path.join(__dirname, "views")
-app.set "view engine", "jade"
+fs = require('fs')
+#app.set "views", path.join(__dirname, "views")
+#app.set "view engine", "jade"
+cache = {}
+
+###
+ * Render the template
+###
+app.engine 'tpl', (filePath, options, next) ->
+  if (template = cache[filePath])?
+    return next(null, template.render(options))
+  else
+    fs.readFile filePath, (err, content) ->
+      return next(new Error(err)) if (err)
+      template = cache[filePath] = liquid.Template.parse(String(content))
+      return next(null, template.render(options))
+
+###
+ * Set default engine
+###
+app.set('view engine', 'tpl')
+app.set('views', path.resolve(__dirname, './views'))
+
 
 # boot scripts mount components like REST API
 boot app, __dirname
@@ -58,11 +91,17 @@ app.use bodyParser.urlencoded(extended: true)
 # The access token is only available after boot
 app.use loopback.token(model: app.models.accessToken)
 app.use loopback.cookieParser(app.get("cookieSecret"))
-app.use loopback.session(
-  secret: "kitty"
+
+sess =
+  secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
-)
+if app.get('env') is 'production'
+  app.set('trust proxy', 1)
+  sess.cookie.secure = true
+
+
+app.use loopback.session(sess)
 passportConfigurator.init()
 
 # We need flash messages to see passport errors
@@ -77,86 +116,104 @@ for s of config
   c.session = c.session isnt false
   passportConfigurator.configureProvider s, c
 ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn
-app.get "/", (req, res, next) ->
-  res.render "pages/index",
-    user: req.user
-    url: req.url
 
+###
+ * R O U T I N G
+###
+app.get "/", (req, res) ->
+  res.render('index.tpl', {})
   return
 
-app.get "/auth/account", ensureLoggedIn("/login"), (req, res, next) ->
-  res.render "pages/loginProfiles",
-    user: req.user
-    url: req.url
-
+app.get "/admin", (req, res) ->
+  res.render('admin.tpl', {})
   return
 
-app.get "/link/account", ensureLoggedIn("/login"), (req, res, next) ->
-  res.render "pages/linkedAccounts",
-    user: req.user
-    url: req.url
-
+app.get "/asteroids", (req, res) ->
+  res.redirect "games/asteroids/asteroids.html"
   return
 
-app.get "/local", (req, res, next) ->
-  res.render "pages/local",
-    user: req.user
-    url: req.url
 
-  return
 
-app.get "/signup", (req, res, next) ->
-  res.render "pages/signup",
-    user: req.user
-    url: req.url
-
-  return
-
-app.post "/signup", (req, res, next) ->
-  User = app.models.user
-  newUser = {}
-  newUser.email = req.body.email.toLowerCase()
-  newUser.username = req.body.username.trim()
-  newUser.password = req.body.password
-  User.create newUser, (err, user) ->
-    if err
-      req.flash "error", err.message
-      res.redirect "back"
-    else
-      
-      # Passport exposes a login() function on req (also aliased as logIn())
-      # that can be used to establish a login session. This function is
-      # primarily used when users sign up, during which req.login() can
-      # be invoked to log in the newly registered user.
-      req.login user, (err) ->
-        if err
-          req.flash "error", err.message
-          return res.redirect("back")
-        res.redirect "/auth/account"
-
-    return
-
-  return
-
-app.get "/login", (req, res, next) ->
-  res.render "pages/login",
-    user: req.user
-    url: req.url
-
-  return
-
-app.get "/link", (req, res, next) ->
-  res.render "pages/link",
-    user: req.user
-    url: req.url
-
-  return
-
-app.get "/auth/logout", (req, res, next) ->
-  req.logout()
-  res.redirect "/"
-  return
-
+#app.get "/", (req, res, next) ->
+#  res.render "pages/index",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.get "/auth/account", ensureLoggedIn("/login"), (req, res, next) ->
+#  res.render "pages/loginProfiles",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.get "/link/account", ensureLoggedIn("/login"), (req, res, next) ->
+#  res.render "pages/linkedAccounts",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.get "/local", (req, res, next) ->
+#  res.render "pages/local",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.get "/signup", (req, res, next) ->
+#  res.render "pages/signup",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.post "/signup", (req, res, next) ->
+#  User = app.models.user
+#  newUser = {}
+#  newUser.email = req.body.email.toLowerCase()
+#  newUser.username = req.body.username.trim()
+#  newUser.password = req.body.password
+#  User.create newUser, (err, user) ->
+#    if err
+#      req.flash "error", err.message
+#      res.redirect "back"
+#    else
+#
+#      # Passport exposes a login() function on req (also aliased as logIn())
+#      # that can be used to establish a login session. This function is
+#      # primarily used when users sign up, during which req.login() can
+#      # be invoked to log in the newly registered user.
+#      req.login user, (err) ->
+#        if err
+#          req.flash "error", err.message
+#          return res.redirect("back")
+#        res.redirect "/auth/account"
+#
+#    return
+#
+#  return
+#
+#app.get "/login", (req, res, next) ->
+#  res.render "pages/login",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.get "/link", (req, res, next) ->
+#  res.render "pages/link",
+#    user: req.user
+#    url: req.url
+#
+#  return
+#
+#app.get "/auth/logout", (req, res, next) ->
+#  req.logout()
+#  res.redirect "/"
+#  return
+#
 
 # -- Mount static files here--
 # All static middleware should be registered at the end, as all requests
