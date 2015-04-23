@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "gamesDb": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "games",
+    "password": "games",
+    "name": "gamesDb",
+    "user": "games",
+    "connector": "mysql"
+  }
+}
