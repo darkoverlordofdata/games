@@ -60,9 +60,9 @@ session =
   secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
-if app.get('env') is 'production'
-  app.set('trust proxy', 1)
-  session.cookie.secure = true
+#if app.get('env') is 'production'
+#  app.set('trust proxy', 1)
+#  session.cookie.secure = true
 
 app.use loopback.session(session)
 passportConfigurator.init()
