@@ -1,0 +1,41 @@
+h2{
+    font-family:raleway;
+    font-size: 96%;;
+}
+#main {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%; 
+    margin-top: 5%;
+}
+div#envelope{
+    width: 90%;
+    margin: 6%;
+}
+#formget_ad {
+    position: absolute;
+    margin-top: 70%;
+    margin-left: 35%;
+    margin-right: 25%;
+}
+img#fugo{
+    width: 84%;
+    margin-top: -7%;
+    margin-left: 2%;
+}
+p{
+    font-family:raleway;
+    font-size: 70%;
+}
+p.welcome{
+    margin-top: -30px;
+    margin-left: 12%;
+}
+p.profile {
+    font-weight: bold;
+    font-size: 80%;
+}
+a.logout{
+    font-family:raleway;
+    font-size: 80%;
+}
