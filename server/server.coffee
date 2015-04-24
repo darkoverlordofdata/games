@@ -7,8 +7,6 @@
 
 
 ###
-
-
 loopback = require("loopback")
 boot = require("loopback-boot")
 path = require('path')
@@ -37,9 +35,6 @@ can make the most accurate determination of why authentication failed.
 ###
 flash = require("express-flash")
 
-# attempt to build the providers/passport config
-config = require("./providers.json")
-
 # Set up the /favicon.ico
 app.use loopback.favicon()
 
@@ -60,16 +55,16 @@ app.use bodyParser.urlencoded(extended: true)
 app.use loopback.token(model: app.models.accessToken)
 app.use loopback.cookieParser(app.get("cookieSecret"))
 
-sess =
+# Use secure session cookies
+session =
   secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
 if app.get('env') is 'production'
   app.set('trust proxy', 1)
-  sess.cookie.secure = true
+  session.cookie.secure = true
 
-
-app.use loopback.session(sess)
+app.use loopback.session(session)
 passportConfigurator.init()
 
 # We need flash messages to see passport errors
@@ -79,27 +74,24 @@ passportConfigurator.setupModels
   userIdentityModel: app.models.userIdentity
   userCredentialModel: app.models.userCredential
 
-for s of config
-  c = config[s]
+# Configure the providers
+for s, c of require("./providers.json")
   c.session = c.session isnt false
   passportConfigurator.configureProvider s, c
 
 
-#
-# load modules
+# Load Modular MVC
+# each module has it's own static content,
+# models, views, controllers, etc.
 modules = require('../modules')
-modules app,
-  user: true
-  game: true
-
-
+modules app, require('./modules.json')
 
 # Requests that get this far won't be handled
 # by any middleware. Convert them into a 404 error
 # that will be handled later down the chain.
 app.use loopback.urlNotFound()
 
-# The ultimate error handler.
+# The ultimate (final) error handler.
 app.use loopback.errorHandler()
 app.start = ->
 
