@@ -75,16 +75,20 @@ passportConfigurator.setupModels
   userCredentialModel: app.models.userCredential
 
 # Configure the providers
-for s, c of require("./providers.json")
+config = require("./providers.json")
+config['google-login']['clientID'] = process.env.GOOG_CLIENT_ID
+config['google-login']['clientSecret'] = process.env.GOOG_CLIENT_SECRET
+
+for s, c of config
   c.session = c.session isnt false
   passportConfigurator.configureProvider s, c
 
 
-# Load Modular MVC
+# Load MMVC
 # each module has it's own static content,
 # models, views, controllers, etc.
-modules = require('../application')
-modules app
+modular = require('../application')
+modular app
 
 # Requests that get this far won't be handled
 # by any middleware. Convert them into a 404 error
