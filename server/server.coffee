@@ -11,7 +11,6 @@ loopback = require("loopback")
 boot = require("loopback-boot")
 path = require('path')
 app = module.exports = loopback()
-
 # Passport configurators..
 loopbackPassport = require("loopback-component-passport")
 PassportConfigurator = loopbackPassport.PassportConfigurator
@@ -58,18 +57,19 @@ app.use loopback.cookieParser(app.get("cookieSecret"))
 
 # Use secure session cookies
 RedisStore = require('connect-redis')(loopback.session)
-if app.get('env') is 'production'
-  redisOptions =
-    host: process.env.REDISCLOUD_URL
-    port: process.env.REDISCLOUD_PORT
-    pass: process.env.REDISCLOUD_PASSWORD
-else redisOptions = {}
+
+redisOptions = ->
+  if app.get('env') is 'production'
+      host: process.env.REDISCLOUD_URL
+      port: process.env.REDISCLOUD_PORT
+      pass: process.env.REDISCLOUD_PASSWORD
+  else {}
 
 app.use loopback.session
   secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
-  store: new RedisStore(redisOptions)
+  store: new RedisStore(redisOptions())
 
 passportConfigurator.init()
 
@@ -81,15 +81,14 @@ passportConfigurator.setupModels
   userCredentialModel: app.models.userCredential
 
 # Configure the providers
-config = require("./providers.json")
-config['google-login']['clientID'] = process.env.GOOG_CLIENT_ID
-config['google-login']['clientSecret'] = process.env.GOOG_CLIENT_SECRET
+providers = require("./providers.json")
+providers['google-login']['clientID'] = process.env.GOOG_CLIENT_ID
+providers['google-login']['clientSecret'] = process.env.GOOG_CLIENT_SECRET
 
-
-
-for s, c of config
-  c.session = c.session isnt false
-  passportConfigurator.configureProvider s, c
+do ->
+  for name, provider of providers
+    provider.session = provider.session isnt false
+    passportConfigurator.configureProvider name, provider
 
 
 # Load MMVC
