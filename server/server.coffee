@@ -39,7 +39,7 @@ flash = require("express-flash")
 app.use loopback.favicon()
 
 # request pre-processing middleware
-app.use loopback.compress()
+#app.use loopback.compress()
 
 # boot scripts mount components like REST API
 boot app, __dirname
