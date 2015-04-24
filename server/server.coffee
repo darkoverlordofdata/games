@@ -56,15 +56,13 @@ app.use loopback.token(model: app.models.accessToken)
 app.use loopback.cookieParser(app.get("cookieSecret"))
 
 # Use secure session cookies
-session =
+RedisStore = require('connect-redis')(loopback.session)
+app.use loopback.session
   secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
-#if app.get('env') is 'production'
-#  app.set('trust proxy', 1)
-#  session.cookie.secure = true
+  store: new RedisStore()
 
-app.use loopback.session(session)
 passportConfigurator.init()
 
 # We need flash messages to see passport errors
