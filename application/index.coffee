@@ -3,9 +3,10 @@ fs = require('fs')
 path = require('path')
 loopback = require("loopback")
 
-module.exports = (app, modules) ->
+module.exports = (app) ->
 
-  for name, enabled of modules
+  # -- Boot module scripts  --
+  for name, enabled of require('./modules.json')
 
     # -- Boot module scripts  --
     if enabled

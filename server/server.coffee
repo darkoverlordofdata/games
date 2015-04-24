@@ -83,8 +83,8 @@ for s, c of require("./providers.json")
 # Load Modular MVC
 # each module has it's own static content,
 # models, views, controllers, etc.
-modules = require('../modules')
-modules app, require('./modules.json')
+modules = require('../application')
+modules app
 
 # Requests that get this far won't be handled
 # by any middleware. Convert them into a 404 error

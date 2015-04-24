@@ -1,0 +1,11 @@
+{
+  "user": {
+    "render": true,
+    "routes": true,
+    "users": true
+  },
+  "game": {
+    "render": true,
+    "routes": true
+  }
+}
