@@ -78,7 +78,6 @@ passportConfigurator.setupModels
 config = require("./providers.json")
 config['google-login']['clientID'] = process.env.GOOG_CLIENT_ID
 config['google-login']['clientSecret'] = process.env.GOOG_CLIENT_SECRET
-
 for s, c of config
   c.session = c.session isnt false
   passportConfigurator.configureProvider s, c
