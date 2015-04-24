@@ -55,6 +55,8 @@ app.use bodyParser.urlencoded(extended: true)
 app.use loopback.token(model: app.models.accessToken)
 app.use loopback.cookieParser(app.get("cookieSecret"))
 
+console.log process.env.rediscloud_39a84
+
 # Use secure session cookies
 RedisStore = require('connect-redis')(loopback.session)
 app.use loopback.session
