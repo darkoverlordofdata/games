@@ -55,15 +55,21 @@ app.use bodyParser.urlencoded(extended: true)
 app.use loopback.token(model: app.models.accessToken)
 app.use loopback.cookieParser(app.get("cookieSecret"))
 
-console.log process.env.rediscloud_39a84
 
 # Use secure session cookies
 RedisStore = require('connect-redis')(loopback.session)
+if app.get('env') is 'production'
+  redisOptions =
+    host: process.env.REDISCLOUD_URL
+    port: process.env.REDISCLOUD_PORT
+    pass: process.env.REDISCLOUD_PASSWORD
+else redisOptions = {}
+
 app.use loopback.session
   secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
-  store: new RedisStore()
+  store: new RedisStore(redisOptions)
 
 passportConfigurator.init()
 
@@ -78,6 +84,9 @@ passportConfigurator.setupModels
 config = require("./providers.json")
 config['google-login']['clientID'] = process.env.GOOG_CLIENT_ID
 config['google-login']['clientSecret'] = process.env.GOOG_CLIENT_SECRET
+
+
+
 for s, c of config
   c.session = c.session isnt false
   passportConfigurator.configureProvider s, c
