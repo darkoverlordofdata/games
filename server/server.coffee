@@ -14,6 +14,8 @@ path = require('path')
 fs = require('fs')
 
 app = module.exports = loopback()
+app.enable('strict routing')
+
 
 #
 # * Console logging requests.

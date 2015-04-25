@@ -13,3 +13,7 @@ module.exports = (app, mod) ->
   app.get "/asteroids", (req, res) ->
     res.redirect "games/asteroids/asteroids.html"
     return
+
+  app.get "/asteroids", (req, res) ->
+    res.redirect "games/asteroids/asteroids.html"
+    return

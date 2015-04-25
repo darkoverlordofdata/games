@@ -29,7 +29,8 @@
     "coffee-script": "~1.9.2",
     "liquid.coffee": "~0.1.0",
     "connect-redis": "~2.2.0",
-    "morgan": "~1.5.2"
+    "morgan": "~1.5.2",
+    "express-slash": "~2.0.1"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.2.9"
