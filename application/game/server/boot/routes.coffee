@@ -29,14 +29,9 @@ module.exports = (app, mod) ->
   #
   # * Play a game
   # * Use app.all for FB compatability
-  # * This will have to dynamically serve up a game folder
-  # * For now, this is hard coded
+  # * This dynamically serves up a game folder
   # *
   #
-  app.all '/asteroidz', (req, res) ->
-    res.redirect 'game/asteroids/asteroids.html'
-    return
-    
   app.all '/game/:name', (req, res) ->
     res.redirect req.params.name+'/'+req.params.name+'.html'
     return

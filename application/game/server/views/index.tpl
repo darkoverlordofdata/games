@@ -15,6 +15,12 @@
 
   <!-- Custom styles for this template -->
   <link href="css/jumbotron-narrow.css" rel="stylesheet">
+  <style>
+    .beta {
+      background-image: url("beta80.png");
+      background-repeat: no-repeat;
+    }
+  </style>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -26,7 +32,7 @@
 <body>
 
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron beta">
     <img src="welcome.png" class="img-responsive img-rounded" alt="darkoverlord & bosco's game-o-rama">
   </div>
 
@@ -64,7 +70,7 @@
         <h2 class="featurette-heading">Asteroids <span class="text-muted">Dude...</span></h2>
         <p class="lead">Back on Arcturus, we use this as a flight simulator.</p>
       </div>
-      <div class="col-md-5"><a href="/asteroidz">
+      <div class="col-md-5"><a href="/game/asteroids">
         <img class="featurette-image img-responsive center-block" src="assets/asteroids.png" alt="Generic placeholder image">
       </a>
       </div>
