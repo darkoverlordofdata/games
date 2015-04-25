@@ -9,7 +9,10 @@
 ###
 loopback = require("loopback")
 boot = require("loopback-boot")
+core = require('./core')
 path = require('path')
+fs = require('fs')
+
 app = module.exports = loopback()
 
 #
@@ -33,8 +36,7 @@ passportConfigurator = new PassportConfigurator(app)
 # * body-parser is a piece of express middleware that
 # *   reads a form's input and stores it as a javascript
 # *   object accessible through `req.body`
-# *
-# 
+#
 bodyParser = require("body-parser")
 
 #
@@ -79,24 +81,18 @@ app.use loopback.token(model: app.models.accessToken)
 app.use loopback.cookieParser(app.get("cookieSecret"))
 
 #
-# * Use redis to save session cookies
-#
-RedisStore = require('connect-redis')(loopback.session)
-redisOptions = ->
-  if app.get('env') is 'production'
-      host: process.env.REDISCLOUD_URL
-      port: process.env.REDISCLOUD_PORT
-      pass: process.env.REDISCLOUD_PASSWORD
-  else {}
-
-#
 # * Use sessions to save passport tokens
 #
+RedisStore = require('connect-redis')(loopback.session)
 app.use loopback.session
   secret: process.env.OPENSHIFT_SECRET_TOKEN or 'Kh2RWaQO1SbU55UbnWXZ8jO3L8JH35zF'
   saveUninitialized: true
   resave: true
-  store: new RedisStore(redisOptions())
+  store: new RedisStore(if app.get('env') is 'production'
+    host: process.env.REDISCLOUD_URL
+    port: process.env.REDISCLOUD_PORT
+    pass: process.env.REDISCLOUD_PASSWORD
+  else {})
 
 #
 # * Passport Configuration
@@ -127,7 +123,10 @@ do -> # each
     provider.session = provider.session isnt false
     passportConfigurator.configureProvider name, provider
 
-
+#
+# * Set 'global' static root and views
+# * Set default template engine to ejs
+#
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(loopback.static(path.resolve(__dirname, '../client/public')))
@@ -139,35 +138,26 @@ app.use(loopback.static(path.resolve(__dirname, '../client/public')))
 modular = require('../application')
 modular app
 
-
 #
 # * Requests that get this far won't be handled
 # * by any middleware. Convert them into a 404 error
 # * that will be handled later down the chain.
 #
-app.use (req, res, next) ->
-  res.status(404)
-  res.render('errors/404', url: req.url)
+app.use core.errorHandler()
 
 #
+# *
 # * The ultimate (final) error handler.
+# *
 #
-app.use (err, req, res, next) ->
-  res.status(err.status || 500)
-  res.render('errors/5xx', error: err)
-
-#
-# * start the web server
-#
-app.start = ->
-  app.listen ->
-    app.emit "started"
-    console.log "Web server listening at: %s", app.get("url")
-    return
+app.use core.urlNotFound()
 
 #
 # * start the server if `$ node server.js`
 # * for use by slc arc
 #
 if path.basename(require.main.filename) is 'server.js'
-  app.start()
+  app.listen ->
+    app.emit "started"
+    console.log "Web server listening at: %s", app.get("url")
+    return

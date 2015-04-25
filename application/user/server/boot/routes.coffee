@@ -6,7 +6,6 @@ module.exports = (app, mod) ->
     mod.render res, "pages/index",
       user: req.user
       url: req.url
-      messages: req.flash()
 
     return
 
@@ -14,7 +13,6 @@ module.exports = (app, mod) ->
     mod.render res, "pages/loginProfiles",
       user: req.user
       url: req.url
-      messages: req.flash()
 
     return
 
@@ -22,7 +20,6 @@ module.exports = (app, mod) ->
     mod.render res, "pages/linkedAccounts",
       user: req.user
       url: req.url
-      messages: req.flash()
 
     return
 
@@ -30,7 +27,6 @@ module.exports = (app, mod) ->
     mod.render res, "pages/local",
       user: req.user
       url: req.url
-      messages: req.flash()
 
     return
 
@@ -38,7 +34,6 @@ module.exports = (app, mod) ->
     mod.render res, "pages/signup",
       user: req.user
       url: req.url
-      messages: req.flash()
 
     return
 
@@ -72,14 +67,12 @@ module.exports = (app, mod) ->
     mod.render res, "pages/login",
       user: req.user
       url: req.url
-      messages: req.flash()
     return
 
   app.get "/link", (req, res, next) ->
     mod.render res, "pages/link",
       user: req.user
       url: req.url
-      messages: req.flash()
 
     return
 
