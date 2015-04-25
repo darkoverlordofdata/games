@@ -2,18 +2,15 @@ fs = require('fs')
 liquid = require('liquid.coffee')
 module.exports = (app, mod) ->
 
-  app.get "/", (req, res) ->
+  app.all "/", (req, res) ->
     mod.render(res, 'index')
     return
 
-  app.get "/admin", (req, res) ->
+  app.all "/admin", (req, res) ->
     mod.render(res, 'admin')
     return
 
-  app.get "/asteroids", (req, res) ->
+  app.all "/asteroids", (req, res) ->
     res.redirect "games/asteroids/asteroids.html"
     return
 
-  app.post "/asteroids", (req, res) ->
-    res.redirect "games/asteroids/asteroids.html"
-    return
