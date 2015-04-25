@@ -30,7 +30,8 @@
     "liquid.coffee": "~0.1.0",
     "connect-redis": "~2.2.0",
     "morgan": "~1.5.2",
-    "eco": "~1.1.0-rc-3"
+    "eco": "~1.1.0-rc-3",
+    "zip-dir": "~1.0.0"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.2.9"

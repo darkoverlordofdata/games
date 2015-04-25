@@ -34,7 +34,7 @@ module.exports = (app, mod) ->
       return
     else
       fs.readFile filename, (err, content) ->
-        throw err if err
+        return res.req.next(err) if err
         template = cache[filename] = liquid.Template.parse(String(content))
         send(res, template.render(data))
         return

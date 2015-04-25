@@ -36,7 +36,7 @@ module.exports = (app, mod) ->
       return
     else
       fs.readFile filename, (err, content) ->
-        throw err if err
+        return res.req.next(err) if err
         template = cache[filename] = jade.compile(String(content), filename: filename)
         send(res, template(data))
         return
