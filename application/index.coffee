@@ -5,10 +5,12 @@ loopback = require("loopback")
 
 module.exports = (app) ->
 
-  # -- Boot module scripts  --
+  # -- Each module  --
+  # Load the configuration
   for name, enabled of require('./modules.json')
 
     # -- Boot module scripts  --
+    # Module controllers, views, models
     if enabled
       do (name) ->
         mod = {}
@@ -17,7 +19,7 @@ module.exports = (app) ->
             boot = require(path.join(__dirname, name, 'server/boot', filename))
             boot(app, mod)
 
-    # -- Mount static files here--
+    # -- Mount static files --
     # All static middleware should be registered at the end, as all requests
     # passing the static middleware are hitting the file system
     app.use loopback.static(path.join(__dirname, name, 'client/public'))

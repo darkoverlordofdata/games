@@ -1,0 +1,10 @@
+<% include header %>
+<div class="row">
+    <div class="alert alert-block">
+        <h3><%= error.message %></h3>
+        <div class="well">
+            <%- error.stack %>
+        </div>
+    </div>
+</div>
+<% include footer %>

@@ -28,7 +28,8 @@
     "loopback-connector-mysql": "~1.7.0",
     "coffee-script": "~1.9.2",
     "liquid.coffee": "~0.1.0",
-    "connect-redis": "~2.2.0"
+    "connect-redis": "~2.2.0",
+    "morgan": "~1.5.2"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.2.9"
