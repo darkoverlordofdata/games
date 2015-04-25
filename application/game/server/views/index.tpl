@@ -64,7 +64,7 @@
         <h2 class="featurette-heading">Asteroids <span class="text-muted">Dude...</span></h2>
         <p class="lead">Back on Arcturus, we use this as a flight simulator.</p>
       </div>
-      <div class="col-md-5"><a href="asteroids">
+      <div class="col-md-5"><a href="/asteroidz">
         <img class="featurette-image img-responsive center-block" src="assets/asteroids.png" alt="Generic placeholder image">
       </a>
       </div>

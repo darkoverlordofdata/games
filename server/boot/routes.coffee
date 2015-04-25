@@ -1,4 +1,4 @@
-slash   = require('express-slash');
+#slash   = require('express-slash');
 
 module.exports = (app) ->
   
@@ -10,5 +10,5 @@ module.exports = (app) ->
 
   router.get "/status", app.loopback.status()
   app.use router
-  app.use slash()
+#  app.use slash()
   return
