@@ -76,24 +76,3 @@ module.exports = (app, mod) ->
       return
 
 
-  #
-  # * Pseudo Api
-  # * Not sure if I need the expense of a db
-  # * just for a read-only list of games.
-  # *
-  #
-  app.get '/test/Games', (req, res) ->
-    res.json(mod.games)
-    res.end()
-    return
-
-  app.get '/test/Games/:id', (req, res) ->
-    id = parseInt(req.params.id, 10)-1
-    if mod.games[id]?
-      res.json(mod.games[id])
-    else if mod.byName[req.params.id]?
-      res.json(mod.byName[req.params.id])
-    else
-      res.json({error: status: 404})
-    res.end()
-    return
