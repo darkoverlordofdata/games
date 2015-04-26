@@ -1,0 +1,10 @@
+body {
+    background-color: #000511;
+    color: #0ff;
+}
+
+.beta {
+    background-image: url("../beta80.png");
+    background-repeat: no-repeat;
+    background-color: #006e9c;
+}
