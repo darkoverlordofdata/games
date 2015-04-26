@@ -12,11 +12,43 @@ ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn
 module.exports = (app, mod) ->
 
   #
-  # * Home page for the site
+  # * Home page
   # *
   #
   app.all '/', (req, res) ->
-    mod.render(res, 'index')
+    mod.render res, 'index',
+      topHref: '/about'
+      topButton: 'About'
+    return
+
+  #
+  # * Terms and Conditions
+  # *
+  #
+  app.all '/terms', (req, res) ->
+    mod.render res, 'terms',
+      topHref: '/'
+      topButton: 'Home'
+    return
+
+  #
+  # * Privacy Statement
+  # *
+  #
+  app.all '/privacy', (req, res) ->
+    mod.render res, 'privacy',
+      topHref: '/'
+      topButton: 'Home'
+    return
+
+  #
+  # * About this site
+  # *
+  #
+  app.all '/about', (req, res, next) ->
+    mod.render res, 'about',
+      topHref: '/'
+      topButton: 'Home'
     return
 
   #
@@ -28,10 +60,10 @@ module.exports = (app, mod) ->
     mod.render(res, 'admin')
     return
 
-  app.get '/about', (req, res, next) ->
-    mod.render(res, 'about', {})
-    return
-
+  #
+  # * K A T R A
+  # *
+  #
   app.all '/katra/run', (req, res) ->
     res.redirect 'https://darkoverlordofdata.com/katra/run'
     return

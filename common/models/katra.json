@@ -1,0 +1,42 @@
+{
+  "name": "Katra",
+  "base": "PersistedModel",
+  "strict": false,
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true,
+      "required": true,
+      "index": true,
+      "comments": "key"
+    },
+    "active": {
+      "type": "boolean",
+      "comments": "Active?"
+    },
+    "slug": {
+      "type": "string",
+      "comments": "partial uri"
+    },
+    "title": {
+      "type": "string",
+      "comments": "title"
+    },
+    "description": {
+      "type": "string",
+      "comments": "description"
+    },
+    "image": {
+      "type": "string",
+      "comments": "image"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

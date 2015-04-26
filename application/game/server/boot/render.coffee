@@ -17,6 +17,17 @@ send = (res, html) ->
     'Content-Type'    : 'text/html; charset=utf-8'
   res.write(html)
   res.end()
+  return
+
+###
+ * used for {% extends 'layout' %}
+###
+liquid.Template.fileSystem =
+  root: path.resolve(__dirname, '../views')
+  readTemplateFile: (view) ->
+    filename = path.join(__dirname, '../views', view)+'.tpl'
+    return fs.readFileSync(filename, 'utf-8')
+
 
 module.exports = (app, mod) ->
 

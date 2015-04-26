@@ -38,8 +38,7 @@
   "optionalDependencies": {
     "loopback-explorer": "^1.2.9"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git://github.com/darkoverlordofdata/games.git"
