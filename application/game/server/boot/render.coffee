@@ -26,6 +26,8 @@ module.exports = (app, mod) ->
   #
   mod.render = (res, view, data = {}) ->
 
+    cache = {} if app.get('env') is 'development'
+
     data.messages = res.req.flash()
 
     filename = path.join(__dirname, '../views', view)+'.tpl'

@@ -35,7 +35,7 @@
   <div class="jumbotron beta">
     <img src="welcome.png" class="img-responsive img-rounded" alt="darkoverlord & bosco's game-o-rama">
   </div>
-
+  <a class="pull-right" href="/about">About</a>
   <!-- Carousel
 
   <!-- Marketing messaging and featurettes
@@ -67,8 +67,11 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">Asteroids <span class="text-muted">Dude...</span></h2>
-        <p class="lead">Back on Arcturus, we use this as a flight simulator.</p>
+        <h2 class="featurette-heading">Asteroids <span class="text-muted"> &middot; phaser</span></h2>
+        <p class="lead">Back on Arcturus, we use this as a flight simulator
+          <img src="nw.png">
+          <a href="/nw/asteroids">Download</a> packaged for <a href="http://nwjs.io/">Node WebKit</a>
+        </p>
       </div>
       <div class="col-md-5"><a href="/game/asteroids">
         <img class="featurette-image img-responsive center-block" src="assets/asteroids.png" alt="Generic placeholder image">
@@ -80,10 +83,10 @@
 
     <div class="row featurette">
       <div class="col-md-7 col-md-push-5">
-        <h2 class="featurette-heading">Katra - <span class="text-muted">Check it out.</span></h2>
-        <p class="lead">Like, classic games from the golden age of programming.</p>
+        <h2 class="featurette-heading">Space <span class="text-muted"> &middot; basic</span></h2>
+        <p class="lead">Like, beam me up, dude.</p>
       </div>
-      <div class="col-md-5 col-md-pull-7"><a href="https://darkoverlordofdata.com/katra">
+      <div class="col-md-5 col-md-pull-7"><a href="/katra/sttr1">
         <img class="featurette-image img-responsive center-block" src="assets/katra.png" alt="Generic placeholder image">
       </a>
       </div>
@@ -91,13 +94,51 @@
 
     <hr class="featurette-divider">
 
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Hunt the Wumpus<span class="text-muted"> &middot; basic</span></h2>
+        <p class="lead">Whats a Wumpus?</p>
+      </div>
+      <div class="col-md-5"><a href="/katra/wumpus">
+        <img class="featurette-image img-responsive center-block" src="assets/wumpus.png" alt="Generic placeholder image">
+      </a>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">Eliza<span class="text-muted"> &middot; basic</span></h2>
+        <p class="lead">A head shrinker with a 'tude.</p>
+      </div>
+      <div class="col-md-5 col-md-pull-7"><a href="/katra/wumpus">
+        <img class="featurette-image img-responsive center-block" src="assets/eliza.png" alt="Generic placeholder image">
+      </a>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Oregon<span class="text-muted"> &middot; basic</span></h2>
+        <p class="lead">Wagon Ho...</p>
+      </div>
+      <div class="col-md-5"><a href="/katra/wumpus">
+        <img class="featurette-image img-responsive center-block" src="assets/oregon.png" alt="Generic placeholder image">
+      </a>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->
 
 
     <!-- FOOTER -->
     <footer>
-      <p><a class="pull-left" href="#">Back to top</a> &nbsp; <a class="pull-right" href="admin">Login</a></p>
+      <p><a class="pull-left" href="#">Back to top</a> &nbsp;</p>
       <p>&copy; 2015 <a href="//www.darkoverlordofdata.com">Dark Overlord of Data</a> &middot; Always use Dark Overlord of Data brand data in your devices that use data.</p>
     </footer>
 

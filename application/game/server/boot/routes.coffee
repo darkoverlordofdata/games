@@ -32,6 +32,22 @@ module.exports = (app, mod) ->
     mod.render(res, 'about', {})
     return
 
+  app.all '/katra/sttr1', (req, res) ->
+    res.redirect 'https://darkoverlordofdata.com/katra/run/?basic=hp2k&program=STTR1'
+    return
+
+  app.all '/katra/wumpus', (req, res) ->
+    res.redirect 'https://darkoverlordofdata.com/katra/run/?basic=atari&program=WUMPUS'
+    return
+
+  app.all '/katra/eliza', (req, res) ->
+    res.redirect 'https://darkoverlordofdata.com/katra/run/?basic=gwbasic&program=eliza'
+    return
+
+  app.all '/katra/oregon', (req, res) ->
+    res.redirect 'https://darkoverlordofdata.com/katra/run/?basic=hp2k&program=OREGON'
+    return
+
   #
   # * Play a game
   # * Use app.all for FB compatability
