@@ -5,6 +5,7 @@ body {
 
 .beta {
     background-image: url("../beta80.png");
+    background-position: right 10px center;
     background-repeat: no-repeat;
     background-color: #006e9c;
 }

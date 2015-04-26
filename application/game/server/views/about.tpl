@@ -3,6 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1 content="initial-scale=1.0, user-scalable=no"">
+  <meta name="theme-color" content="#000511" />
 
   <meta name="description" content="">
   <meta name="author" content="">
@@ -27,11 +28,11 @@
 <body>
 
 <div class="container">
-  <div class="jumbotron beta">
+  <div class="well beta">
     <img src="welcome.png" class="img-responsive img-rounded" alt="darkoverlord & bosco's game-o-rama">
+    <a class="pull-right btn btn-info" href="/" role="button">Home</a>
   </div>
-  <h4><span class="text-muted">
-  <a class="pull-right" href="/">Home</a></span></h4>
+
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
@@ -39,7 +40,13 @@
 
   <div class="container marketing" id="d16a">
 
-    <!-- Three columns of text below the carousel -->
+    <div class="col-lg-6" id="bosco">
+      <img class="img-circle" src="bosco.png" width="140" height="140">
+      <h2>Bosco</h2>
+      <p>Your typical insane office hologram, Bosco likes to spend his spare time watching TJ Hooker reruns on his internal vid circuits. </p><p>After memorizing all 91 episodes, Bosco was heard to say "I've seen the past, gentlemen, and it works."</p>
+      <p><a class="btn btn-info" href="http://talesofbosco.tumblr.com/" role="button">Tales of Bosco &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+
     <div class="row" id="about">
       <div class="col-lg-6">
         <img class="img-circle" src="logo.png" width="140" height="140">
@@ -52,12 +59,6 @@
         <p><a class="btn btn-info" href="http://d16a.blogspot.com/2014/05/the-programmer-dream.html" role="button">Blog &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
 
-      <div class="col-lg-6" id="bosco">
-        <img class="img-circle" src="bosco.png" width="140" height="140">
-        <h2>Bosco</h2>
-        <p>Your typical insane office hologram, Bosco likes to spend his spare time watching TJ Hooker reruns on his internal vid circuits. </p><p>After memorizing all 91 episodes, Bosco was heard to say "I've seen the past, gentlemen, and it works."</p>
-        <p><a class="btn btn-info" href="http://talesofbosco.tumblr.com/" role="button">Tales of Bosco &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
     <hr class="featurette-divider">
@@ -74,8 +75,8 @@
           <a href="https://darkoverlordofdata.com/katra/help/">Katra</a> is a basic language interpreter for the web.
         </p>
       </div>
-      <div class="col-md-5"><a href="/katra/oregon">
-        <img class="featurette-image img-responsive center-block" src="assets/basic.png" alt="Generic placeholder image">
+      <div class="col-md-5"><a href="/katra/run">
+        <img class="featurette-image img-responsive img-rounded center-block" src="assets/basic.png" alt="Generic placeholder image">
       </a>
       </div>
     </div>

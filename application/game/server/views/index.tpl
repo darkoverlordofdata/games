@@ -3,6 +3,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1 content="initial-scale=1.0, user-scalable=no"">
+  <meta name="theme-color" content="#000511" />
 
   <meta name="description" content="">
   <meta name="author" content="">
@@ -27,11 +28,11 @@
 <body>
 
 <div class="container">
-  <div class="jumbotron beta">
+  <div class="well beta">
     <img src="welcome.png" class="img-responsive img-rounded" alt="darkoverlord & bosco's game-o-rama">
+    <a class="pull-right btn btn-info" href="/about" role="button">About</a>
   </div>
-  <h4><span class="text-muted">
-  <a class="pull-right" href="/about">About</a></span></h4>
+
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -39,9 +40,6 @@
   <div class="container marketing">
 
     <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
     <div class="row featurette">
       <div class="col-md-7">
         <h2 class="featurette-heading">Asteroids</h2>
@@ -51,7 +49,7 @@
         </p>
       </div>
       <div class="col-md-5"><a href="/game/asteroids">
-        <img class="featurette-image img-responsive center-block" src="assets/asteroids.png" alt="Generic placeholder image">
+        <img class="featurette-image img-responsive img-rounded center-block" src="assets/asteroids.png" alt="Generic placeholder image">
       </a>
       </div>
     </div>
@@ -78,7 +76,7 @@
         <p class="lead">Like, beam me up, dude.</p>
       </div>
       <div class="col-md-5 col-md-pull-7"><a href="/katra/sttr1">
-        <img class="featurette-image img-responsive center-block" src="assets/katra.png" alt="Generic placeholder image">
+        <img class="featurette-image img-responsive img-rounded center-block" src="assets/katra.png" alt="Generic placeholder image">
       </a>
       </div>
     </div>
@@ -91,7 +89,7 @@
         <p class="lead">What's a Wumpus?</p>
       </div>
       <div class="col-md-5"><a href="/katra/wumpus">
-        <img class="featurette-image img-responsive center-block" src="assets/wumpus.png" alt="Generic placeholder image">
+        <img class="featurette-image img-responsive img-rounded center-block" src="assets/wumpus.png" alt="Generic placeholder image">
       </a>
       </div>
     </div>
@@ -104,7 +102,7 @@
         <p class="lead">A shrink with a 'tude.</p>
       </div>
       <div class="col-md-5 col-md-pull-7"><a href="/katra/eliza">
-        <img class="featurette-image img-responsive center-block" src="assets/eliza.png" alt="Generic placeholder image">
+        <img class="featurette-image img-responsive img-rounded center-block" src="assets/eliza.png" alt="Generic placeholder image">
       </a>
       </div>
     </div>
@@ -118,7 +116,7 @@
         <p class="lead">To get better Wi-Fi!</p>
       </div>
       <div class="col-md-5"><a href="/katra/oregon">
-        <img class="featurette-image img-responsive center-block" src="assets/oregon.png" alt="Generic placeholder image">
+        <img class="featurette-image img-responsive img-rounded center-block" src="assets/oregon.png" alt="Generic placeholder image">
       </a>
       </div>
     </div>

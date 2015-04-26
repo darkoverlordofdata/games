@@ -32,6 +32,10 @@ module.exports = (app, mod) ->
     mod.render(res, 'about', {})
     return
 
+  app.all '/katra/run', (req, res) ->
+    res.redirect 'https://darkoverlordofdata.com/katra/run'
+    return
+
   app.all '/katra/sttr1', (req, res) ->
     res.redirect 'https://darkoverlordofdata.com/katra/run/?basic=hp2k&program=STTR1'
     return
