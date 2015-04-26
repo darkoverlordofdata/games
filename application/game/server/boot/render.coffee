@@ -26,8 +26,14 @@ module.exports = (app, mod) ->
   #
   mod.render = (res, view, data = {}) ->
 
+    ###
+     * So I can refresh the page without restarting in dev
+    ###
     cache = {} if app.get('env') is 'development'
 
+    ###
+     * Get the latest flash message from the middleware
+    ###
     data.messages = res.req.flash()
 
     filename = path.join(__dirname, '../views', view)+'.tpl'

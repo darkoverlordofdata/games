@@ -112,7 +112,7 @@
         <h2 class="featurette-heading">Eliza<span class="text-muted"> &middot; basic</span></h2>
         <p class="lead">A head shrinker with a 'tude.</p>
       </div>
-      <div class="col-md-5 col-md-pull-7"><a href="/katra/wumpus">
+      <div class="col-md-5 col-md-pull-7"><a href="/katra/eliza">
         <img class="featurette-image img-responsive center-block" src="assets/eliza.png" alt="Generic placeholder image">
       </a>
       </div>
@@ -125,7 +125,7 @@
         <h2 class="featurette-heading">Oregon<span class="text-muted"> &middot; basic</span></h2>
         <p class="lead">Wagon Ho...</p>
       </div>
-      <div class="col-md-5"><a href="/katra/wumpus">
+      <div class="col-md-5"><a href="/katra/oregon">
         <img class="featurette-image img-responsive center-block" src="assets/oregon.png" alt="Generic placeholder image">
       </a>
       </div>
