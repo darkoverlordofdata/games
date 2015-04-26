@@ -1,207 +1,61 @@
 {
   "name": "Game",
   "base": "PersistedModel",
+  "strict": false,
   "idInjection": false,
   "options": {
     "validateUpsert": true
   },
-  "mysql": {
-    "schema": "games",
-    "table": "game"
-  },
   "properties": {
     "id": {
-      "type": "Number",
+      "type": "number",
       "id": true,
       "required": true,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "id",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "N"
-      },
-      "_selectable": false
+      "index": true,
+      "comments": "id"
     },
     "active": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 3,
-      "scale": 0,
-      "mysql": {
-        "columnName": "active",
-        "dataType": "tinyint",
-        "dataLength": null,
-        "dataPrecision": 3,
-        "dataScale": 0,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "boolean",
+      "comments": "is active"
     },
     "name": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "name",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "game name"
     },
     "slug": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "slug",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "url segment"
     },
     "url": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "url",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "full url"
     },
     "author": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "author",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "games author"
     },
     "description": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "description",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "description"
     },
     "version": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "version",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "app version"
     },
     "icon": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "icon",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "app icon"
     },
     "main": {
-      "type": "String",
-      "required": false,
-      "length": 191,
-      "precision": null,
-      "scale": null,
-      "mysql": {
-        "columnName": "main",
-        "dataType": "varchar",
-        "dataLength": 191,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string",
+      "comments": "html file to run"
     },
     "height": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "height",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "string"
     },
     "width": {
-      "type": "Number",
-      "required": false,
-      "length": null,
-      "precision": 10,
-      "scale": 0,
-      "mysql": {
-        "columnName": "width",
-        "dataType": "int",
-        "dataLength": null,
-        "dataPrecision": 10,
-        "dataScale": 0,
-        "nullable": "Y"
-      },
-      "_selectable": true
+      "type": "number",
+      "comments": "window width"
     }
   },
   "validations": [],

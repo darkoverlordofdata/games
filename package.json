@@ -31,7 +31,9 @@
     "connect-redis": "~2.2.0",
     "morgan": "~1.5.2",
     "eco": "~1.1.0-rc-3",
-    "zip-dir": "~1.0.0"
+    "zip-dir": "~1.0.0",
+    "loopback-connector-sqlite": "~0.1.4",
+    "node-sqlite3": "0.0.3"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.2.9"

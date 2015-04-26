@@ -35,7 +35,7 @@
     "public": false
   },
   "Game": {
-    "dataSource": "gamesDb",
+    "dataSource": "sqlite3",
     "public": true
   }
 }

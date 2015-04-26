@@ -9,10 +9,10 @@ module.exports = (app) ->
   # Load the configuration
   for name, enabled of require('./modules.json')
 
-    # -- Boot module scripts  --
-    # Module controllers, views, models
-    if enabled
-      do (name) ->
+    do (name) ->
+      # -- Boot module scripts  --
+      # Module controllers, views, models
+      if enabled
         mod = {}
         for filename in fs.readdirSync(path.join(__dirname, name, 'server/boot'))
           if path.extname(filename) in ['.coffee','.js']

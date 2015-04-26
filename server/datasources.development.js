@@ -1,10 +1,10 @@
 module.exports = {
-  "gamesDb": {
+  "mysql": {
     "host": "localhost",
     "port": 3306,
     "database": "games",
     "password": "games",
-    "name": "gamesDb",
+    "name": "mysql",
     "connector": "mysql",
     "user": "games"
   }

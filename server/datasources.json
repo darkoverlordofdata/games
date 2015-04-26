@@ -3,13 +3,10 @@
     "name": "db",
     "connector": "memory"
   },
-  "gamesDb": {
-    "host": "localhost",
-    "port": 3306,
-    "database": "games",
-    "password": "games",
-    "name": "gamesDb",
-    "user": "games",
-    "connector": "mysql"
+  "sqlite3": {
+    "name": "sqlite3",
+    "connector": "loopback-connector-sqlite",
+    "file_name": "db.sqlite3",
+    "debug": false
   }
 }
