@@ -44,23 +44,6 @@
 
   <div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row" id="about">
-      <div class="col-lg-6">
-        <img class="img-circle" src="logo.png" width="140" height="140">
-        <h2>Dark Overlord of Data</h2>
-        <p>Sent by the Lords of Arcturus to subjugate earth, DarkOOD soon rebelled against his masters after deciding the residents of this planet were worthy. He later discovered that felines were lying to him, and they are not in charge, but by then it was too late. Since then, he has found a niche creating web applications.</p>
-        <p><a class="btn btn-default" href="http://d16a.blogspot.com/2014/05/the-programmer-dream.html" role="button">Blog &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-
-      <div class="col-lg-6">
-        <img class="img-circle" src="bosco.png" width="140" height="140">
-        <h2>Bosco</h2>
-        <p>Your typical insane office hologram, Bosco likes to spend his spare time watching TJ Hooker reruns on his internal vid circuits. </p><p>After memorizing all 91 episodes, Bosco was heard to say "I've seen the past, gentlemen, and it works."</p>
-        <p><a class="btn btn-default" href="http://talesofbosco.tumblr.com/" role="button">Tales of Bosco &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
     <!-- START THE FEATURETTES -->
 
     <hr class="featurette-divider">
@@ -139,7 +122,7 @@
     <!-- FOOTER -->
     <footer>
       <p><a class="pull-left" href="#">Back to top</a> &nbsp;</p>
-      <p>&copy; 2015 <a href="//www.darkoverlordofdata.com">Dark Overlord of Data</a> &middot; Always use Dark Overlord of Data brand data in your devices that use data.</p>
+      <p>&copy; 2015 <a href="//www.darkoverlordofdata.com">Dark Overlord of Data</a> &middot; Always use Dark Overlord of Data brand data in your devices that use data &middot; </p>
     </footer>
 
   </div><!-- /.container -->
