@@ -11,6 +11,7 @@ lifetime = 2592000 # 30 days
 #
 # * Send the html
 # *
+# *
 #
 send = (res, html) ->
   res.writeHead 200,
@@ -33,7 +34,13 @@ liquid.Template.fileSystem =
 module.exports = (app, mod) ->
 
   console.log process.env.MEMCACHED_LOCATIONS ? 'localhost:11211'
-  memcached = new Memcached(process.env.MEMCACHED_LOCATIONS ? 'localhost:11211')
+  try
+    memcached = new Memcached(process.env.MEMCACHED_LOCATIONS ? 'localhost:11211')
+    console.log 'memcached'
+    console.log memcached
+  catch err
+    console.log err
+
   memcached.flush (err) ->
     console.log err
   #
