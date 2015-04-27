@@ -32,8 +32,10 @@ liquid.Template.fileSystem =
 
 module.exports = (app, mod) ->
 
+  console.log process.env.MEMCACHED_LOCATIONS ? 'localhost:11211'
   memcached = new Memcached(process.env.MEMCACHED_LOCATIONS ? 'localhost:11211')
   memcached.flush (err) ->
+    console.log err
   #
   # * Render the template
   # * first look in cache
@@ -47,6 +49,8 @@ module.exports = (app, mod) ->
     data.messages = res.req.flash()
 
     memcached.get view, (err, html) ->
+      console.log err
+      console.log html
       if 'string' is typeof html
         console.log 'result found in cache: %s bytes', html.length
         send(res, html)
