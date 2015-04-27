@@ -5,8 +5,9 @@
 fs = require('fs')
 path = require('path')
 liquid = require('liquid.coffee')
-cache = {}
+Memcached = require('memcached')
 
+lifetime = 2592000 # 30 days
 #
 # * Send the html
 # *
@@ -31,31 +32,35 @@ liquid.Template.fileSystem =
 
 module.exports = (app, mod) ->
 
+  memcached = new Memcached(process.env.MEMCACHED_LOCATIONS ? 'localhost:11211')
+  memcached.flush (err) ->
   #
   # * Render the template
+  # * first look in cache
   # *
   #
   mod.render = (res, view, data = {}) ->
-
-    ###
-     * So I can refresh the page without restarting in dev
-    ###
-    cache = {} if app.get('env') is 'development'
 
     ###
      * Get the latest flash message from the middleware
     ###
     data.messages = res.req.flash()
 
-    filename = path.join(__dirname, '../views', view)+'.tpl'
-    if (template = cache[filename])?
-      send(res, template.render(data))
-      return
-    else
-      fs.readFile filename, (err, content) ->
-        return res.req.next(err) if err
-        template = cache[filename] = liquid.Template.parse(String(content))
-        send(res, template.render(data))
+    memcached.get view, (err, html) ->
+      if 'string' is typeof html
+        console.log 'result found in cache: %s bytes', html.length
+        send(res, html)
         return
+      else
+        filename = path.join(__dirname, '../views', view)+'.tpl'
+        fs.readFile filename, 'utf-8', (err, content) ->
+          return res.req.next(err) if err
+          template = liquid.Template.parse(content)
+          html = template.render(data)
+          send(res, html)
+          memcached.set view, html, lifetime, (err) ->
+            console.log err if err
+          return
   return
+
 

@@ -41,6 +41,12 @@
 
     {% block 'content' %}
     {% endblock %}
+    <footer>
+      <p><a class="pull-left" href="#">Back to top</a> &nbsp;</p>
+      <p>&copy; 2015 <a href="//www.darkoverlordofdata.com">Dark Overlord of Data</a> &middot; Always use Dark Overlord of Data brand data in your devices that use data &middot; </p>
+      <p><a class="pull-left" href="/terms">Terms</a><a class="pull-right" href="/privacy">Privacy</a></p>
+    </footer>
+
   </div><!-- /.container -->
 
 </div> <!-- /container -->
