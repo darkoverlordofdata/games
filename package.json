@@ -33,7 +33,7 @@
     "zip-dir": "~1.0.0",
     "loopback-connector-sqlite": "~0.1.4",
     "node-sqlite3": "0.0.3",
-    "memcached": "~2.1.0"
+    "memjs": "~0.8.5"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.2.9"

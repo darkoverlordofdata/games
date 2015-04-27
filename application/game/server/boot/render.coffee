@@ -5,9 +5,8 @@
 fs = require('fs')
 path = require('path')
 liquid = require('liquid.coffee')
-Memcached = require('memcached')
+memjs = require('memjs')
 
-lifetime = 100 #2592000 # 30 days
 #
 # * Send the html
 # *
@@ -33,8 +32,11 @@ liquid.Template.fileSystem =
 
 module.exports = (app, mod) ->
 
-  memcached = new Memcached(process.env.MEMCACHED_LOCATIONS ? 'localhost:11211')
-  console.log process.env.MEMCACHED_LOCATIONS ? 'localhost:11211'
+  if process.env.memcachedcloud_aaaeb?
+    p = JSON.parse(process.env.memcachedcloud_aaaeb)
+    memcached = memjs.Client.create(p.servers, username: p.username, password: p.password)
+  else
+    memcached = memjs.Client.create('localhost:11211')
 
   memcached.flush (err) ->
   #
@@ -44,29 +46,24 @@ module.exports = (app, mod) ->
   #
   mod.render = (res, view, data = {}) ->
 
-    console.log 'RENDER = '+view
     ###
      * Get the latest flash message from the middleware
     ###
     data.messages = res.req.flash()
 
     memcached.get view, (err, html) ->
-      console.log 'TYPE = '+typeof(html)
-      console.log err
-      console.log html
-      if 'string' is typeof html
-        console.log 'result found in cache: %s bytes', html.length
+      if html isnt null
+        console.log "%s bytes retrieved from cache", String(html).length
         send(res, html)
         return
       else
         filename = path.join(__dirname, '../views', view)+'.tpl'
-        console.log 'FILENAME = '+filename
         fs.readFile filename, 'utf-8', (err, content) ->
           return res.req.next(err) if err
           template = liquid.Template.parse(content)
           html = template.render(data)
           send(res, html)
-          memcached.set view, html, lifetime, (err) ->
+          memcached.set view, html, (err) ->
             console.log err if err
           return
   return
